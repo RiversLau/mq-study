@@ -37,6 +37,8 @@ public class RabbitConsumer {
                     e.printStackTrace();
                 }
                 channel.basicAck(envelope.getDeliveryTag(), false);
+                // 通过reject进入死信队列
+                // channel.basicReject(envelope.getDeliveryTag(), false);
             }
         };
         channel.basicConsume(QUEUE_NAME, consumer);
